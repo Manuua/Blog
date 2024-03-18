@@ -5,7 +5,7 @@ import { DropdownList, Icon, ListItem, StyledButton } from './ButtonOptions.styl
 interface Props {
   mainText: string;
   options: string[];
-  onSelectOption: (option: string) => void;
+  onSelectOption: (option: string, isDateSort: boolean) => void;
 }
 
 const ButtonOptions: React.FC<Props> = ({ mainText, options, onSelectOption }) => {
@@ -24,7 +24,7 @@ const ButtonOptions: React.FC<Props> = ({ mainText, options, onSelectOption }) =
       {isDropdownOpen && (
         <DropdownList>
           {options.map((option, index) => (
-            <ListItem key={index} onClick={() => onSelectOption(option)}>
+            <ListItem key={index} onClick={() => onSelectOption(option, false)}>
               {option}
             </ListItem>
           ))}
