@@ -1,19 +1,31 @@
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
+import cors from 'cors'; // Adicione esta linha
+import postsRouter from './routes/authorController.js';
+import noticiasRouter from './routes/newsController.js';
 
 const app = express();
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.PORT || 8000;
 
-// Middleware para análise de corpos JSON
+const swaggerDocument = YAML.load('./swagger.yaml');
+
 app.use(express.json());
 
+// Adicione o middleware cors aqui
+app.use(cors());
+
 // Rotas
-import postsRouter from './routes/posts.js'; // Use o caminho relativo correto
-app.use('/posts', postsRouter);
+app.use('/autores', postsRouter);
+app.use('/noticias', noticiasRouter); 
 
 // Rota inicial
 app.get('/', (req, res) => {
   res.send('Bem-vindo ao meu blog!');
 });
+
+// Rota para a documentação Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Iniciar servidor
 app.listen(PORT, () => {

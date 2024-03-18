@@ -1,36 +1,42 @@
-// components/Post.tsx
-
 import React from 'react';
-import styled from 'styled-components';
-
-// Estilizando o componente de post usando Styled Components
-const PostContainer = styled.div`
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  margin-bottom: 20px;
-`;
-
-const Title = styled.h2`
-  color: #333;
-`;
-
-const Body = styled.p`
-  color: #666;
-`;
+import { FaLinkedin, FaTwitter, FaLink } from 'react-icons/fa';
+import { AuthorContainer, AuthorName, BodyText, Container, GrayIconContainer, PostDate, StyledPost, TitleText } from './Card.styles';
 
 interface PostProps {
+  author: string;
+  date: string;
   title: string;
   body: string;
+  onIconClick: (icon: string) => void;
 }
 
-const Post: React.FC<PostProps> = ({ title, body }) => {
+const Card: React.FC<PostProps> = ({ author, date, title, body, onIconClick }) => {
+  
+  const handleIconClick = (icon: string) => {
+    onIconClick(icon);
+  };
+
   return (
-    <PostContainer>
-      <Title>{title}</Title>
-      <Body>{body}</Body>
-    </PostContainer>
+    <StyledPost>
+      <AuthorContainer>
+        <AuthorName>{author}</AuthorName>
+        <Container>
+          <GrayIconContainer onClick={() => handleIconClick('linkedin')}>
+            <FaLinkedin size={24} />
+          </GrayIconContainer>
+          <GrayIconContainer onClick={() => handleIconClick('twitter')}>
+            <FaTwitter size={24} />
+          </GrayIconContainer>
+          <GrayIconContainer onClick={() => handleIconClick('link')}>
+            <FaLink size={24} />
+          </GrayIconContainer>
+        </Container>
+      </AuthorContainer>
+      <PostDate>{date}</PostDate>
+      <TitleText>{title}</TitleText>
+      <BodyText>{body}</BodyText>
+    </StyledPost>
   );
 };
 
-export default Post;
+export default Card;

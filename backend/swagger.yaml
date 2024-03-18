@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+  title: Minha API
+  description: Uma API para gerenciar autores e notícias
+  version: 1.0.0
+paths:
+  /autores:
+    get:
+      summary: Lista todos os autores
+      responses:
+        '200':
+          description: Lista de autores recuperada com sucesso
+        '500':
+          description: Erro ao recuperar a lista de autores
+    post:
+      summary: Cria um novo autor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  example: João
+                email:
+                  type: string
+                  example: joao@email.com
+                linkedin:
+                  type: string
+                  example: https://www.linkedin.com/in/joao
+                twitter:
+                  type: string
+                  example: https://twitter.com/joao
+                site:
+                  type: string
+                  example: https://www.joao.com.br
+      responses:
+        '200':
+          description: Autor criado com sucesso
+        '400':
+          description: Parâmetros inválidos
+        '500':
+          description: Erro ao criar autor
+  /autores/{autorId}:
+    get:
+      summary: Recupera um autor pelo ID
+      parameters:
+        - name: autorId
+          in: path
+          required: true
+          description: ID do autor a ser recuperado
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Autor recuperado com sucesso
+        '404':
+          description: Autor não encontrado
+        '500':
+          description: Erro ao recuperar autor
+    put:
+      summary: Atualiza um autor existente pelo ID
+      parameters:
+        - name: autorId
+          in: path
+          required: true
+          description: ID do autor a ser atualizado
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: string
+                linkedin:
+                  type: string
+                twitter:
+                  type: string
+                site:
+                  type: string
+      responses:
+        '200':
+          description: Autor atualizado com sucesso
+        '404':
+          description: Autor não encontrado
+        '400':
+          description: Parâmetros inválidos
+        '500':
+          description: Erro ao atualizar autor
+    delete:
+      summary: Exclui um autor pelo ID
+      parameters:
+        - name: autorId
+          in: path
+          required: true
+          description: ID do autor a ser excluído
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Autor excluído com sucesso
+        '404':
+          description: Autor não encontrado
+        '500':
+          description: Erro ao excluir autor
+  /noticias:
+    get:
+      summary: Lista todas as notícias
+      responses:
+        '200':
+          description: Lista de notícias recuperada com sucesso
+        '500':
+          description: Erro ao recuperar a lista de notícias
+    post:
+      summary: Cria uma nova notícia
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                autor_id:
+                  type: integer
+                  example: 1
+                titulo:
+                  type: string
+                  example: Notícia 1
+                data_noticia:
+                  type: string
+                  format: date
+                  example: 2024-03-18
+                conteudo:
+                  type: string
+                  example: Conteúdo da notícia 1
+      responses:
+        '200':
+          description: Notícia criada com sucesso
+        '400':
+          description: Parâmetros inválidos
+        '500':
+          description: Erro ao criar notícia
+  /noticias/{noticiaId}:
+    get:
+      summary: Recupera uma notícia pelo ID
+      parameters:
+        - name: noticiaId
+          in: path
+          required: true
+          description: ID da notícia a ser recuperada
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Notícia recuperada com sucesso
+        '404':
+          description: Notícia não encontrada
+        '500':
+          description: Erro ao recuperar notícia
+    put:
+      summary: Atualiza uma notícia existente pelo ID
+      parameters:
+        - name: noticiaId
+          in: path
+          required: true
+          description: ID da notícia a ser atualizada
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                autor_id:
+                  type: integer
+                titulo:
+                  type: string
+                data_noticia:
+                  type: string
+                  format: date
+                conteudo:
+                  type: string
+      responses:
+        '200':
+          description: Notícia atualizada com sucesso
+        '404':
+          description: Notícia não encontrada
+        '400':
+          description: Parâmetros inválidos
+        '500':
+          description: Erro ao atualizar notícia
+    delete:
+      summary: Exclui uma notícia pelo ID
+      parameters:
+        - name: noticiaId
+          in: path
+          required: true
+          description: ID da notícia a ser excluída
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Notícia excluída com sucesso
+        '404':
+          description: Notícia não encontrada
+        '500':
+          description: Erro ao excluir notícia
