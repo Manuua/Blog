@@ -1,11 +1,9 @@
-import express from 'express';
 import pkg from 'pg';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const { Pool } = pkg;
-const router = express.Router();
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -15,8 +13,8 @@ const pool = new Pool({
   port: 5432,
 });
 
-// Rota para listar todas as notícias
-router.get('/', async (req, res) => {
+// Função para listar todas as notícias
+export const listNews = async (req, res) => {
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT * FROM noticias');
@@ -27,10 +25,10 @@ router.get('/', async (req, res) => {
     console.error('Erro ao obter notícias:', error);
     res.status(500).json({ message: 'Erro ao obter notícias' });
   }
-});
+};
 
-// Rota para criar uma nova notícia
-router.post('/', async (req, res) => {
+// Função para criar uma nova notícia
+export const createNews = async (req, res) => {
   try {
     const { autor_id, titulo, data_noticia, conteudo } = req.body;
     const client = await pool.connect();
@@ -42,10 +40,10 @@ router.post('/', async (req, res) => {
     console.error('Erro ao criar notícia:', error);
     res.status(500).json({ message: 'Erro ao criar notícia' });
   }
-});
+};
 
-// Rota para recuperar uma notícia pelo ID
-router.get('/:id', async (req, res) => {
+// Função para recuperar uma notícia pelo ID  
+export const getNewsById = async (req, res) => {
   try {
     const { id } = req.params;
     const client = await pool.connect();
@@ -58,13 +56,13 @@ router.get('/:id', async (req, res) => {
       res.status(404).json({ message: 'Notícia não encontrada' });
     }
   } catch (error) {
-    console.error('Erro ao recuperar notícia:', error);
-    res.status(500).json({ message: 'Erro ao recuperar notícia' });
+    console.error('Erro ao obter notícia:', error);
+    res.status(500).json({ message: 'Erro ao obter notícia' });
   }
-});
+};
 
-// Rota para atualizar uma notícia pelo ID
-router.put('/:id', async (req, res) => {
+// Função para atualizar uma notícia pelo ID
+export const updateNews = async (req, res) => {
   try {
     const { id } = req.params;
     const { autor_id, titulo, data_noticia, conteudo } = req.body;
@@ -72,34 +70,23 @@ router.put('/:id', async (req, res) => {
     const result = await client.query('UPDATE noticias SET autor_id = $1, titulo = $2, data_noticia = $3, conteudo = $4 WHERE id = $5 RETURNING *', [autor_id, titulo, data_noticia, conteudo, id]);
     const noticiaAtualizada = result.rows[0];
     client.release();
-    if (noticiaAtualizada) {
-      res.json({ message: 'Notícia atualizada com sucesso', noticia: noticiaAtualizada });
-    } else {
-      res.status(404).json({ message: 'Notícia não encontrada' });
-    }
+    res.json({ message: 'Notícia atualizada', noticia: noticiaAtualizada });
   } catch (error) {
     console.error('Erro ao atualizar notícia:', error);
     res.status(500).json({ message: 'Erro ao atualizar notícia' });
   }
-});
+};
 
-// Rota para excluir uma notícia pelo ID
-router.delete('/:id', async (req, res) => {
+// Função para deletar uma notícia pelo ID
+export const deleteNews = async (req, res) => {
   try {
     const { id } = req.params;
     const client = await pool.connect();
-    const result = await client.query('DELETE FROM noticias WHERE id = $1 RETURNING *', [id]);
-    const noticiaExcluida = result.rows[0];
+    await client.query('DELETE FROM noticias WHERE id = $1', [id]);
     client.release();
-    if (noticiaExcluida) {
-      res.json({ message: 'Notícia excluída com sucesso', noticia: noticiaExcluida });
-    } else {
-      res.status(404).json({ message: 'Notícia não encontrada' });
-    }
+    res.json({ message: 'Notícia deletada' });
   } catch (error) {
-    console.error('Erro ao excluir notícia:', error);
-    res.status(500).json({ message: 'Erro ao excluir notícia' });
+    console.error('Erro ao deletar notícia:', error);
+    res.status(500).json({ message: 'Erro ao deletar notícia' });
   }
-});
-
-export default router;
+};
