@@ -1,4 +1,3 @@
-import React from 'react';
 import logoFooter from '../../assets/logoFooter.svg';
 import { CopyrightText, FooterContainer, InnerFooter, Logo } from './Footer.styles';
 

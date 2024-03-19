@@ -1,8 +1,7 @@
-// Divider.tsx
 import React from 'react';
 import DividerStyled from './Divider.styles';
 
-const Divider: React.FC = () => {
+const Divider = () => {
   return <DividerStyled />;
 };
 

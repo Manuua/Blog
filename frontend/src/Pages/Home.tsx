@@ -25,7 +25,13 @@ const Home: React.FC = () => {
   };
 
   const handleIconClick = (icon: string) => {
-    // Implemente a lógica para lidar com o clique no ícone, se necessário
+    if (icon === 'linkedin') {
+      window.open('https://www.linkedin.com', '_blank');
+    } else if (icon === 'twitter') {
+      window.open('https://www.twitter.com', '_blank');
+    } else {
+      newsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const uniqueAuthorPosts = news
