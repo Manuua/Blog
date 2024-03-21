@@ -21,6 +21,9 @@ Para montar arquivos para deploy
 <h2> Aplicação no heruko </h2>
 
 https://meu-blog-d6031f413975.herokuapp.com/api-docs/#/default/get_autores
+
+Pendências : banco não conectado
+
 <h2> Estrutura das pastas </h2> 
 
 
