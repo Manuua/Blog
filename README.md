@@ -34,6 +34,12 @@ user: u9qcc4rbnelejf
 
 senha : p0f2d2d03875eba0d1f56b4cb42ab9e66cf732b4a9a5c45d3b7ba25aaf3954179
 
+<H2> Pendências </H2>
+
+- Banco não conectado na aplicação provisionada utilizando Heruko, ao fazer requisições o  Swagger retornará erro.
+- Teste unitários apenas no frontend 
+
+
 <h2> Estrutura das pastas </h2> 
 
 
