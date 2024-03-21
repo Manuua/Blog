@@ -40,6 +40,7 @@ senha : p0f2d2d03875eba0d1f56b4cb42ab9e66cf732b4a9a5c45d3b7ba25aaf3954179
 - Teste unitários apenas no frontend, para rodar do teste é necessários entrar na pasta <code> cd frontend </code>
 - As tabelas ficaram simples
 - não instalei diversos pacotes como eslint
+- Não automatizei deploy com action no git hub
 
 
 <h2> Estrutura das pastas </h2> 
