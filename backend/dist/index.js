@@ -2,8 +2,8 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 import cors from 'cors';
-import postsRouter from './routes/authorController.js';
-import noticiasRouter from './routes/newsController.js';
+import newsRouter from './routes/newsRouter.js';
+import authorRouter from './routes/authorRouter.js';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -15,8 +15,8 @@ app.use(express.json());
 app.use(cors());
 
 // Rotas
-app.use('/autores', postsRouter);
-app.use('/noticias', noticiasRouter); 
+app.use('/autores', authorRouter);
+app.use('/noticias', newsRouter); 
 
 // Rota inicial
 app.get('/', (req, res) => {

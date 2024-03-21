@@ -4,19 +4,15 @@ import YAML from 'yamljs';
 import cors from 'cors';
 import postsRouter from './routes/authorController.js';
 import noticiasRouter from './routes/newsController.js';
-
 const app = express();
 const PORT = process.env.PORT || 8000;
-
 const swaggerDocument = YAML.load('./swagger.yaml');
-
 app.use(express.json());
-
 app.use(cors());
 
 // Rotas
 app.use('/autores', postsRouter);
-app.use('/noticias', noticiasRouter); 
+app.use('/noticias', noticiasRouter);
 
 // Rota inicial
 app.get('/', (req, res) => {
