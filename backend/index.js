@@ -20,7 +20,7 @@ app.use('/noticias', newsRouter);
 
 // Rota inicial
 app.get('/', (req, res) => {
-  res.send('Bem-vindo ao meu blog!');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Rota para a documentação Swagger

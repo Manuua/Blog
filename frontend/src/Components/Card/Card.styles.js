@@ -16,10 +16,13 @@ export const BodyText = styled.p`
 export const AuthorName = styled.p`
   color: #e04c85;
   font-weight: bold;
+  text-transform: uppercase;
 `;
 
 export const PostDate = styled.p`
   color: #58595d;
+  margin-top: 0;
+  padding-bottom: 8px;
 `;
 
 export const GrayIconContainer = styled.span`
@@ -35,5 +38,4 @@ export const AuthorContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 5px;
 `;

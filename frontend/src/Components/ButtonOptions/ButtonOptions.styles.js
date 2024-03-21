@@ -33,7 +33,9 @@ export const DropdownList = styled.ul`
 export const ListItem = styled.li`
   padding: 8px 16px;
   cursor: pointer;
+  text-transform: uppercase;
 
+  
   &:hover {
     background-color: #07A46C;
     color: inherit;
