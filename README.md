@@ -22,7 +22,7 @@ Para montar arquivos para deploy
 
 https://meu-blog-d6031f413975.herokuapp.com/api-docs/#/default/get_autores
 
-Pendências : banco não conectado
+Pendências : banco não conectado só funciona no localhost
 
 Conectar com o banco usando dbever por exemplo 
 
