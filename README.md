@@ -22,9 +22,9 @@ Para montar arquivos para deploy
 
 https://meu-blog-d6031f413975.herokuapp.com/api-docs/#/default/get_autores
 
-Pendências : banco não conectado só funciona no localhost
+Pendências : banco na aplicação não conectado só funciona no localhost
 
-Conectar com o banco usando dbever por exemplo 
+conectar com o banco remoto usando dbever por exemplo: (obs: os dados são uma replica do que tenho no localhost) 
 
 host : ec2-54-204-143-182.compute-1.amazonaws.com
 
@@ -37,7 +37,9 @@ senha : p0f2d2d03875eba0d1f56b4cb42ab9e66cf732b4a9a5c45d3b7ba25aaf3954179
 <H2> Pendências </H2>
 
 - Banco não conectado na aplicação provisionada utilizando Heruko, ao fazer requisições o  Swagger retornará erro.
-- Teste unitários apenas no frontend 
+- Teste unitários apenas no frontend, para rodar do teste é necessários entrar na pasta <code> cd frontend </code>
+- As tabelas ficaram simples
+- não instalei diversos pacotes como eslint
 
 
 <h2> Estrutura das pastas </h2> 
