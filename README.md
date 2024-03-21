@@ -18,7 +18,9 @@ Para rodar os testes entrar dentro da pasta por exemplo cd frontend
 Para montar arquivos para deploy 
 
 <code>npm run build </code>
+<h2> Aplicação no heruko </h2>
 
+https://meu-blog-d6031f413975.herokuapp.com/api-docs/#/default/get_autores
 <h2> Estrutura das pastas </h2> 
 
 
